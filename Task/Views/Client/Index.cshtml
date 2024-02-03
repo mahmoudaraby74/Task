@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Client>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>All Clients</h1>
+<br />
+<a asp-action="Create" class="btn btn-primary">Create New Client</a>
+<br />
+<br />
+
+
+<form Class="my-3" asp-action="Index" asp-controller="Client">
+    <div class=" row">
+        <div class="col-sm-8">
+            <input placeholder="Search By Name" name="SearchValue" class="form-control" />
+        </div>
+        <div class="col-sm-4">
+            <input type="submit" value="Search" class=" btn  btn-success btn-block" />
+        </div>
+    </div>
+</form>
+<br />
+
+@if (Model?.Count() > 0)
+{
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(d=>d.ClientId)</th>
+                <th>@Html.DisplayNameFor(d=>d.Name)</th>
+               
+                <th>Details</th>
+                <th>Update</th>
+                <th>Delete</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayNameFor(d=>d.ClientId)</td>
+                    <td>@Html.DisplayNameFor(d=>d.Name)</td>
+                   
+                    <td>
+                        <a class="btn btn-success" asp-action="Details" asp-route-id="@client.ClientId">
+                            <i class="fas fa-eye"></i> Details
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" asp-action="Update" asp-route-id="@client.ClientId">
+                            <i class="fas fa-edit"></i> Update
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@client.ClientId">
+                            <i class="fas fa-trash"></i> Delete
+                        </a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+}
+else
+{
+    <div class="alert alert-warning mt-5 w-50 text-center">
+        <h3>
+            No Clients Found
+        </h3>
+    </div>
+}

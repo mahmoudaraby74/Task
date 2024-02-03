@@ -1,0 +1,46 @@
+﻿@using BLL.Interfaces;
+@model Client
+@inject IOfficeRepository deptRepo
+@{
+    ViewData["Title"] = "Edit";
+    var Offices = new SelectList(deptRepo.GetAll(), "Id", "Name");
+}
+
+<h1>Update Client </h1>
+<br />
+<br />
+
+<div class="row">
+    <div class="col-6">
+        <form asp-action="Update" asp-controller="Client" enctype="multipart/form-data">
+            <input hidden asp-for="ClientId" />
+            <div class="form-group">
+                <label asp-for="@Model.ClientId" class="col-form-label"></label>
+                <input asp-for="@Model.ClientId" class="form-control" />
+                <span asp-validation-for="@Model.ClientId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.Name" class="col-form-label"></label>
+                <input asp-for="@Model.Name" class="form-control" />
+                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.OfficeId" class="col-form-label"></label>
+                <select asp-for="@Model.OfficeId" asp-items="Offices" class="form-control">
+                    <option>--- Select Department ---</option>
+                </select>
+                <span asp-validation-for="@Model.OfficeId" class="text-danger"></span>
+            </div>
+            <br />
+            <input type="submit" value="Save" class="btn btn-primary" />
+            <a asp-action="Index" class=" btn btn-light">Back To List</a>
+
+
+        </form>
+    </div>
+</div>
+
+
+

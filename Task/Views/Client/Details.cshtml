@@ -1,0 +1,28 @@
+﻿@model Client
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Client Details</h1>
+<br />
+<br />
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <label asp-for="@Model.ClientId" class="col-form-label"></label>
+            <input asp-for="@Model.ClientId" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Name" class="col-form-label"></label>
+            <input asp-for="@Model.Name" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+            <label asp-for="Office" class="col-form-label"></label>
+            <input asp-for="@Model.Office.Name" class="form-control" readonly />
+        </div>
+       
+
+        <a class="btn btn-primary" asp-action="Update" asp-route-id="@Model.ClientId">Edit</a>
+        <a class="btn btn-light" asp-action="Index">Back To List</a>
+    </div>
+</div>

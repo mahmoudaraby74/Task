@@ -1,0 +1,45 @@
+﻿@using BLL.Interfaces;
+@model Client
+@inject IOfficeRepository officeRepo
+@{
+    ViewData["Title"] = "Add";
+    var Offices = new SelectList(officeRepo.GetAll(), "Id", "Name");
+
+}
+
+<h1>Add new Client </h1>
+<br />
+<br />
+
+<div class=" row mb-3">
+    <div class="col-8">
+        <form asp-action="Create" asp-controller="Client" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="@Model.ClientId" class="col-form-label"></label>
+                <input asp-for="@Model.ClientId" class="form-control" />
+                <span asp-validation-for="@Model.ClientId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.Name" class="col-form-label"></label>
+                <input asp-for="@Model.Name" class="form-control" />
+                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            </div>
+
+           
+            <div class="form-group">
+                <label asp-for="@Model.OfficeId" class="col-form-label"></label>
+                <select asp-for="@Model.OfficeId" asp-items="Offices" class="form-control">
+                    <option>--- Select Office ---</option>
+                </select>
+                <span asp-validation-for="@Model.OfficeId" class="text-danger"></span>
+            </div>
+          
+            <br />
+            <input type="submit" value="Add" class="btn btn-primary" />
+            <a asp-action="Index" class=" btn btn-light">Back To List</a>
+
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+﻿@model Office
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Office Detatils</h1>
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="form-group">
+            <label asp-for="@Model.Name" class="col-form-label"></label>
+            <input asp-for="@Model.Name" class="form-control" readonly />
+
+        </div>
+        <br />
+        <a class="btn btn-primary" asp-action="Update" asp-route-id="@Model.OfficeId">Edit</a>
+        <a asp-action="Index" class=" btn btn-light">Back To List</a>
+
+    </div>
+
+</div>
